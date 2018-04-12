@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<CONFIG>  
+    <VALUE>  
+        <ID>T_20161220_0121</ID>
+        <PatchMongoItemCount>1000</PatchMongoItemCount>
+        <RedisPipleTme>20000</RedisPipleTme>
+        <MongoPipleTme>20000</MongoPipleTme>
+        <MysqlUrl>jdbc:mysql://10.120.0.25:3306/tendency?useUnicode=true&amp;characterEncoding=utf-8</MysqlUrl>
+        <MysqlUser>root</MysqlUser>
+        <MysqlPassWord>123456</MysqlPassWord>
+        <RedisIP>10.120.0.25</RedisIP>
+        <RedisPort>6380</RedisPort>
+        <MongoIP>10.120.0.25</MongoIP>
+        <MongoPort>2222</MongoPort> 
+        <CodethreadPoolCount>5</CodethreadPoolCount>
+
+    </VALUE>  
+</CONFIG> 
