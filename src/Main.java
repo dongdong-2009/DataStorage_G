@@ -23,13 +23,14 @@ public class Main implements ExectQueueList
 	{
 
 		
-	
 		
-//		String Content = "DC000100AB0A020000FF3106000100260000000017005F3139322e3136382e312e312f323030312f304DD6";
-//		
-//		bll.CmdS.DevWayInOutNotify_Bll c =new  bll.CmdS.DevWayInOutNotify_Bll();
-//		c.SetData(Content);
-//	
+		
+	
+		String Content = "DC0000001800000000F1310600010007000000000F00F29D0000000A0005001203170D1E20002C76";
+
+		bll.CmdS.Data_Test c = new bll.CmdS.Data_Test();
+		c.Run(Content);
+
 
 		String urlString = System.getProperty("user.dir");
 
