@@ -140,7 +140,7 @@ public class RedisTimersch_Data implements Runnable
 	
    //region 注释
 	
-	public static void RRR( MongoDBDaoImpl mDB,List<String> list, String speid)
+	private static void RRR( MongoDBDaoImpl mDB,List<String> list, String speid)
 	{
 		try
 		{

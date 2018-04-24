@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import com.tendency.cb.TaskEvevt.ThreadPoolStatus;
 import com.tendency.cb.util.DataCenter;
 import com.tendency.cb.util.ProtocolUtils;
@@ -20,42 +22,15 @@ public class Main implements ExectQueueList
 	public static void main(String[] args) throws InterruptedException
 	{
 
-	
-
-//		bll.CmdS.Data_Test c = new bll.CmdS.Data_Test();
-//		c.Run(Content);
-
 		String urlString = System.getProperty("user.dir");
 
 		String path = urlString + "/log4j.xml";
 
 		Config Config_ = XMLReader.loadconfig(urlString);
 		ProtocolUtils.setConfg(Config_);
-		
-		
-	
+
 		Log.Init(path);
 		Log.Info("[CMDID:0]==[Config配置文件和日志系统加载成功]]");
-		
-		
-		
-		
-		com.tendency.cb.mogo.MongoDBDaoImpl sdd = new com.tendency.cb.mogo.MongoDBDaoImpl();
-
-		String Content = "DC0000001800000000F1310600010007000000000F00F29D0000000A0005001203170D1E20002C76";
-
-		List<String> sdd123 = new ArrayList<String>();
-		sdd123.add(Content);
-		sdd123.add(Content);
-//		sdd123.add(Content);
-//		sdd123.add(Content);
-//		sdd123.add(Content);
-//		sdd123.add(Content);
-//		sdd123.add(Content);
-
-		bll.RedisTimersch_Data.RRR(sdd, sdd123, "157");
-		
-		
 
 		int ID = 0;
 		try
@@ -95,9 +70,11 @@ public class Main implements ExectQueueList
 
 				}
 
-				BufferedReader strin = new BufferedReader(new InputStreamReader(System.in));
+				str = new Scanner(System.in).nextLine();
+			
 
-				str = strin.readLine();
+				// BufferedReader strin = new BufferedReader(new InputStreamReader(System.in));
+				// str = strin.readLine();
 			}
 		}
 		catch (Exception ex)
