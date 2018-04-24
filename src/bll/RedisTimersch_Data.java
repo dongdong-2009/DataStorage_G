@@ -27,6 +27,9 @@ public class RedisTimersch_Data implements Runnable
 		this.J = J;
 
 	}
+	
+	
+
 
 	private void Execute(List<String> list, String speid)
 	{
@@ -133,5 +136,78 @@ public class RedisTimersch_Data implements Runnable
 			Log.Error("处理Redis数据错误：" + ErrorInfo.GetInfo(ex));
 		}
 	}
+	
+	
+   //region 注释
+	
+	public static void RRR( MongoDBDaoImpl mDB,List<String> list, String speid)
+	{
+		try
+		{
+			Log.Info("开始执行Redis数据");
+			String DevCmd = "";
+			int Data_Size = 0;
+			for (String con : list)
+			{
+				DevCmd = con.substring(28, 32) ;
+				if (DevCmd.equals("0007"))
+				{		
+					Data_Size+=1 ;
+				}
+				
+			}
+
+			ICmd Data_Cmd = new Data_Bll(mDB,Data_Size, speid);
+			ICmd Control_Cmd = new Control_Bll(mDB);
+			ICmd ControlReply_Cmd =new ControlReply_Bll(mDB);
+			ICmd ControlResultData_Cmd =new ControlResultData_Bll(mDB);
+			ICmd DevWayInOutNotify_Cmd =new DevWayInOutNotify_Bll(mDB);
+			for (String content : list)
+			{
+
+				DevCmd = content.substring(28, 32);
+				Integer DevCmdInt = Integer.parseInt(DevCmd,16);
+						
+				switch (DevCmdInt)
+				{
+			
+				case 7: //0007_数据
+					Data_Cmd.SetData(content);
+					break;
+				case 31: //001F_控制
+					Control_Cmd.SetData(content);
+					break;
+				case 32: //0020_控制应答
+					ControlReply_Cmd.SetData(content);
+					break;		
+				case 43: // 002B_控制结果数据 
+					ControlResultData_Cmd.SetData(content);
+					break;
+				case 38: //0026_设备通道上下线通知
+					DevWayInOutNotify_Cmd.SetData(content);
+					break;
+				default:
+					break;
+				}
+
+			}
+			
+			Data_Cmd.Execute();
+			Control_Cmd.Execute();
+			ControlReply_Cmd.Execute();
+			ControlResultData_Cmd.Execute();
+			DevWayInOutNotify_Cmd.Execute();
+			
+			Log.Info("执行Redis数据结束");
+		}
+		catch (Exception ex)
+		{
+
+			Log.Error("处理Redis数据错误：" + ErrorInfo.GetInfo(ex));
+
+		}
+	}
+	
+	//endregion
 
 }

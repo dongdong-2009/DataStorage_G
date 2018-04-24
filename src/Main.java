@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import com.tendency.cb.TaskEvevt.ThreadPoolStatus;
 import com.tendency.cb.util.DataCenter;
@@ -14,23 +15,15 @@ import util.*;
 public class Main implements ExectQueueList
 {
 
-
 	private static boolean Isfirst = false;
-
-	
 
 	public static void main(String[] args) throws InterruptedException
 	{
 
-		
-		
-		
 	
-		String Content = "DC0000001800000000F1310600010007000000000F00F29D0000000A0005001203170D1E20002C76";
 
-		bll.CmdS.Data_Test c = new bll.CmdS.Data_Test();
-		c.Run(Content);
-
+//		bll.CmdS.Data_Test c = new bll.CmdS.Data_Test();
+//		c.Run(Content);
 
 		String urlString = System.getProperty("user.dir");
 
@@ -38,10 +31,30 @@ public class Main implements ExectQueueList
 
 		Config Config_ = XMLReader.loadconfig(urlString);
 		ProtocolUtils.setConfg(Config_);
-
+		
+		
 	
 		Log.Init(path);
 		Log.Info("[CMDID:0]==[Config配置文件和日志系统加载成功]]");
+		
+		
+		
+		
+		com.tendency.cb.mogo.MongoDBDaoImpl sdd = new com.tendency.cb.mogo.MongoDBDaoImpl();
+
+		String Content = "DC0000001800000000F1310600010007000000000F00F29D0000000A0005001203170D1E20002C76";
+
+		List<String> sdd123 = new ArrayList<String>();
+		sdd123.add(Content);
+		sdd123.add(Content);
+//		sdd123.add(Content);
+//		sdd123.add(Content);
+//		sdd123.add(Content);
+//		sdd123.add(Content);
+//		sdd123.add(Content);
+
+		bll.RedisTimersch_Data.RRR(sdd, sdd123, "157");
+		
 		
 
 		int ID = 0;
@@ -132,87 +145,89 @@ public class Main implements ExectQueueList
 		// TODO Auto-generated method stub
 
 	}
-	
-	
-//region Main方法注释	
-	
-//	public static void main(String[] args) throws InterruptedException
-//	{
-//
-//		
-//		
-//	
-//		
-////		String Content = "DC000100AB0A020000FF3106000100260000000017005F3139322e3136382e312e312f323030312f304DD6";
-////		
-////		bll.CmdS.DevWayInOutNotify_Bll c =new  bll.CmdS.DevWayInOutNotify_Bll();
-////		c.SetData(Content);
-////	
-//
-//		String urlString = System.getProperty("user.dir");
-//
-//		String path = urlString + "/log4j.xml";
-//
-//		Config Config_ = XMLReader.loadconfig(urlString);
-//		ProtocolUtils.setConfg(Config_);
-//
-//	
-//		Log.Init(path);
-//		Log.Info("[CMDID:0]==[Config配置文件和日志系统加载成功]]");
-//		
-//
-//		int ID = 0;
-//		try
-//		{
-//
-//			String str = "start";
-//			while (true)
-//			{
-//
-//				if (str.equals("start"))
-//				{
-//
-//					DataCenter.threadPool = ThreadPool.init();
-//					Isfirst = true;
-//					ID++;
-//					DataCenter.threadPool.execute(new ExcuteTaskXml(ID));
-//					DataCenter.FilethreadPool = ThreadPool.init();
-//					DataCenter.CodethreadPool = ThreadPool.init();
-//					DataCenter.CodethreadPool.execute(new ThreadPoolStatus());
-//
-//					Log.Info("====目前运行的线程为：" + DataCenter.threadPool.getExecutor().getActiveCount() + "===可使用的线程数目为："
-//							+ DataCenter.threadPool.getExecutor().getPoolSize());
-//				}
-//				if (str.equals("add"))
-//				{
-//					ID++;
-//					DataCenter.threadPool.execute(new ExcuteTaskXml(ID));
-//					Log.Info("====目前运行的线程为：" + DataCenter.threadPool.getExecutor().getActiveCount() + "===可使用的线程数目为："
-//							+ DataCenter.threadPool.getExecutor().getPoolSize());
-//				}
-//				if (str.equals("stop"))
-//				{
-//
-//					DataCenter.threadPool.getExecutor().shutdownNow();
-//					Log.Info("程序关闭");
-//					System.exit(0);
-//
-//				}
-//
-//				BufferedReader strin = new BufferedReader(new InputStreamReader(System.in));
-//
-//				str = strin.readLine();
-//			}
-//		}
-//		catch (Exception ex)
-//		{
-//
-//			Log.Error("外围运行错误：" + ErrorInfo.GetInfo(ex));
-//
-//		}
-//
-//	}
-	
-	//endregion 
+
+	// region Main方法注释
+
+	// public static void main(String[] args) throws InterruptedException
+	// {
+	//
+	//
+	//
+	//
+	//
+	//// String Content =
+	// "DC000100AB0A020000FF3106000100260000000017005F3139322e3136382e312e312f323030312f304DD6";
+	////
+	//// bll.CmdS.DevWayInOutNotify_Bll c =new bll.CmdS.DevWayInOutNotify_Bll();
+	//// c.SetData(Content);
+	////
+	//
+	// String urlString = System.getProperty("user.dir");
+	//
+	// String path = urlString + "/log4j.xml";
+	//
+	// Config Config_ = XMLReader.loadconfig(urlString);
+	// ProtocolUtils.setConfg(Config_);
+	//
+	//
+	// Log.Init(path);
+	// Log.Info("[CMDID:0]==[Config配置文件和日志系统加载成功]]");
+	//
+	//
+	// int ID = 0;
+	// try
+	// {
+	//
+	// String str = "start";
+	// while (true)
+	// {
+	//
+	// if (str.equals("start"))
+	// {
+	//
+	// DataCenter.threadPool = ThreadPool.init();
+	// Isfirst = true;
+	// ID++;
+	// DataCenter.threadPool.execute(new ExcuteTaskXml(ID));
+	// DataCenter.FilethreadPool = ThreadPool.init();
+	// DataCenter.CodethreadPool = ThreadPool.init();
+	// DataCenter.CodethreadPool.execute(new ThreadPoolStatus());
+	//
+	// Log.Info("====目前运行的线程为：" +
+	// DataCenter.threadPool.getExecutor().getActiveCount() + "===可使用的线程数目为："
+	// + DataCenter.threadPool.getExecutor().getPoolSize());
+	// }
+	// if (str.equals("add"))
+	// {
+	// ID++;
+	// DataCenter.threadPool.execute(new ExcuteTaskXml(ID));
+	// Log.Info("====目前运行的线程为：" +
+	// DataCenter.threadPool.getExecutor().getActiveCount() + "===可使用的线程数目为："
+	// + DataCenter.threadPool.getExecutor().getPoolSize());
+	// }
+	// if (str.equals("stop"))
+	// {
+	//
+	// DataCenter.threadPool.getExecutor().shutdownNow();
+	// Log.Info("程序关闭");
+	// System.exit(0);
+	//
+	// }
+	//
+	// BufferedReader strin = new BufferedReader(new InputStreamReader(System.in));
+	//
+	// str = strin.readLine();
+	// }
+	// }
+	// catch (Exception ex)
+	// {
+	//
+	// Log.Error("外围运行错误：" + ErrorInfo.GetInfo(ex));
+	//
+	// }
+	//
+	// }
+
+	// endregion
 
 }

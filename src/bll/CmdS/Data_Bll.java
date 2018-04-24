@@ -68,14 +68,14 @@ public class Data_Bll implements ICmd
 					
 					DBObject info = new BasicDBObject();
 					
-					Long CurrentCount = GetLastId(DataSize, SpeId);
+				//	Long CurrentCount = GetLastId(DataSize, SpeId);
+					Long CurrentCount = GetLastId(1, SpeId);
 					CurrentCount += 1;
 					info.put("LID", CurrentCount);
 					
 					info.put("CREATED", GetDate());
 							
-					String SN = content.substring(12, 16);
-					info.put("RN", SN);
+					info.put("RN", content.substring(12, 16));
 									
 					String devIdStr = content.substring(18, 26);
 					int devId = (ProtocolUtils.byte4int(ProtocolUtils.hexStringToByte(devIdStr)));
@@ -85,8 +85,7 @@ public class Data_Bll implements ICmd
 					info.put("RESERVE", Reserve);
 					String SUBDEVTYPE = Reserve.substring(4, 8);
 					info.put("SUBDEVTYPE", SUBDEVTYPE);
-					
-									
+														
 					String Speid = SubContent.substring(0, 8);
 					Speid = String.valueOf(ProtocolUtils.byte4int(ProtocolUtils.hexStringToByte(Speid)));
 					info.put("SPEID", Speid);
@@ -94,8 +93,7 @@ public class Data_Bll implements ICmd
 					String Ver = SubContent.substring(8, 12);
 					String Version = String.valueOf(ProtocolUtils.byteToInt(ProtocolUtils.hexStringToByte(Ver)));
 					info.put("VERSION", Version);
-				
-									
+													
 					String subCmd = SubContent.substring(12, 16);
 					String subCmdStr = String
 							.valueOf(ProtocolUtils.byteToInt(ProtocolUtils.hexStringToByte(subCmd)));
@@ -123,6 +121,7 @@ public class Data_Bll implements ICmd
 	}
 	
 	
+//region  注释	
 	
 //	public void SetData(String content)
 //	{
@@ -200,6 +199,8 @@ public class Data_Bll implements ICmd
 //	}
 	
 	
+	//endregion
+	
 
 	/*
 	 * 处理数据。
@@ -221,12 +222,9 @@ public class Data_Bll implements ICmd
 
 					long Time2 = endTime - endTime2;
 					DataCenter.MongoStatus = true;
-
-				
-					
+									
 					Log.Info(NAME+"_批量插入Mongo 数量："+ LDB.size()+" mongodb插入时间："+Time2);
-					
-					
+										
 					LDB.clear();
 					LDB = null;
 				}
@@ -240,7 +238,6 @@ public class Data_Bll implements ICmd
 
 					long Time2 = endTime - endTime2;
 					DataCenter.MongoStatus = true;
-
 					
 					Log.Info(NAME+"_批量插入Mongo_databak 数量："+ LDB.size()+" mongodb插入时间："+Time2);
 					LDB.clear();
