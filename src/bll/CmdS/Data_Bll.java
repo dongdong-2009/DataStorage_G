@@ -70,6 +70,9 @@ public class Data_Bll implements ICmd
 					
 				//	Long CurrentCount = GetLastId(DataSize, SpeId);
 					Long CurrentCount = GetLastId(1, SpeId);
+					
+					Log.Warn("SPEID："+SpeId+" LastId："+CurrentCount);
+					
 					CurrentCount += 1;
 					info.put("LID", CurrentCount);
 					

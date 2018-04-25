@@ -31,6 +31,9 @@ public class Main implements ExectQueueList
 
 		Log.Init(path);
 		Log.Info("[CMDID:0]==[Config配置文件和日志系统加载成功]]");
+		
+		
+
 
 		int ID = 0;
 		try
