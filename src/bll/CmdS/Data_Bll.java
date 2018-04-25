@@ -277,7 +277,7 @@ public class Data_Bll implements ICmd
 				else
 				{
 					IsGetLid = true;
-					Thread.sleep(1000);
+					Thread.sleep(1000); 
 				}
 
 			}
